@@ -17,7 +17,10 @@ def query():
 			url += 'q='+request.args['q']+'&'
 		if 'country' in request.args:
 			url += 'country='+request.args['country']+'&'
-		url += 'sortBy=popularity&'
+		if 'sortBy' in request.args:
+			url += 'sortBy='+request.args['sortBy']+'&'
+		else:
+			url += 'sortBy=popularity&'
 		url += 'language=en&'
 		url += 'apiKey=1db5583f97554370a6d3852ae5ddf700'
 		response = dict(requests.get(url).json())

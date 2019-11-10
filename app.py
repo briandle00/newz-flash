@@ -1,34 +1,39 @@
-from flask import Flask, jsonify
-from flask_restful import Api
-from flask_pymongo import PyMongo
-
-from resources.news import News
+from flask import Flask, jsonify, request
+import requests
 
 app = Flask(__name__)
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/kahoot'
 #api = Api(app)
 
 #api.add_resource(News, '/newsoutput')
-@app.route('/newsoutput')
-def test():
-	print('ok')
-	return 'ok'
-
-
-def get(country, sources, q, source_from, sortby):
-    url = ('https://newsapi.org/v2/everything?'
-           'q='+q+'&'
-           'from='+source_from+'&'
-           'sortBy='+sortby+'&'
-           'apiKey=cc2092da085c4fc3897fbb74e2e41ca8')
-    return 'ok'
-    try:
-        response = requests.get(url)
-        return r.json, 200
-    except:
-        return {'message': 'An error occured trying to look up this news'}, 500
+@app.route('/news')
+def query():
+	if request.args:
+		try:
+			url = 'https://newsapi.org/v2/top-headlines?'
+			if 'q' in request.args:
+				url += 'q='+request.args['q']+'&'
+			if 'from' in request.args:
+				url += 'from='+request.args['from']+'&'
+			if 'to' in request.args:
+				url += 'to='+request.args['to']+'&'
+			if 'country' in request.args:
+				url += 'country='+request.args['country']+'&'
+			url += 'sortBy=popularity&'
+			url += 'language=en&'
+			url += 'apiKey=2ca567cb295449ecb7277f38e38cb7dd'
+			# url = ['htps://newsapi.org/v2/top-headlines?',
+			#        'country=us&',
+			#        'apiKey=2ca567cb295449ecb7277f38e38cb7dd']
+			# url = tuple(url)
+			# url = ('https://newsapi.org/v2/top-headlines?'
+			# 	   'country=us&'
+			# 	   'apiKey=2ca567tcb295449ecb7277f38e38cb7dd')
+			response = requests.get(url)
+			return response.json(), 200
+		except:
+			return "Error loading response", 500
+	else:
+		return "No queries received", 200
 
 if __name__ == '__main__':
-    from db import mongo
-    mongo.init_app(app)
-    app.run(port=5000, debug=True)
+    app.run()

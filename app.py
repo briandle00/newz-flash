@@ -21,7 +21,7 @@ def query():
 			url += 'sortBy='+request.args['sortBy']+'&'
 		else:
 			url += 'sortBy=popularity&'
-		if '' in request.args:
+		if 'category' in request.args:
 			url += 'category='+request.args['category']+'&'
 		url += 'language=en&'
 		url += 'apiKey=1db5583f97554370a6d3852ae5ddf700'

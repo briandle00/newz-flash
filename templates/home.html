@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="static/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container fullcenter">
+            <div class="row">
+                <div class="col-sm-4" style="text-align: right;" id="centered">
+                    <img src="/static/img/logo.png" width="150px" height="150px">
+                </div>
+                <div class="col-sm-8" style="text-align: left;" id="centered">
+                    <h1 id="shadowed">WELCOME TO</br>NEWZFLASH!</h1>
+                </div>
+            </div>
+            <form action='./news'>
+                <div class="row">
+                    <label>Keyword Search (Recommended One Word):</label>
+                    <input type="text" class="form-control form-control-lg" name="q" placeholder="Search for news and Press Enter!">
+                    <!-- <div class="col-sm-4">
+                        <label>Country:</label>
+                        <select class="form-control form-control-lg" name="country">
+                            <option>USA</option>
+                            <option>China</option>
+                            <option>England</option>
+                            <option>France</option>
+                            <option>Mexico</option>
+                        </select>
+                    </div> -->
+                </div>
+            </form>
+            <br>
+            <label>Alternatively:</label>
+            <a type="button" class="btn btn-secondary" href="./generate">Simulate article title using Markov chains</a>
+            <br><br>
+            <p style="text-align: center;">
+                ZotHacks 2019 - Team Honeydew Milk Tea News Aggregator<br>
+                ~ Brian Le - Stephen On - Ethan Yang - Johan Cuevas ~
+            </p>
+        </div>
+    </body>
+</html>

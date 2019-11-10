@@ -12,19 +12,16 @@ def home():
 @app.route('/news')
 def query():
 	if request.args:
-		try:
-			url = 'https://newsapi.org/v2/top-headlines?'
-			if 'q' in request.args:
-				url += 'q='+request.args['q']+'&'
-			if 'country' in request.args:
-				url += 'country='+request.args['country']+'&'
-			url += 'sortBy=popularity&'
-			url += 'language=en&'
-			url += 'apiKey=1db5583f97554370a6d3852ae5ddf700'
-			response = dict(requests.get(url).json())
-			return render_template('news.html', response=response)
-		except:
-			return "Error loading response", 500
+		url = 'https://newsapi.org/v2/top-headlines?'
+		if 'q' in request.args:
+			url += 'q='+request.args['q']+'&'
+		if 'country' in request.args:
+			url += 'country='+request.args['country']+'&'
+		url += 'sortBy=popularity&'
+		url += 'language=en&'
+		url += 'apiKey=1db5583f97554370a6d3852ae5ddf700'
+		response = dict(requests.get(url).json())
+		return render_template('news.html', response=response)
 	else:
 		return "No queries received", 200
 
